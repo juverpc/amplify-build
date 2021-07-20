@@ -1,1 +1,19 @@
+version: 1
+
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+        - npm install --global npm@latest
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    files:
+        - '**/*'
+    discard-paths: yes
+    baseDirectory: build
+ 
+
 
