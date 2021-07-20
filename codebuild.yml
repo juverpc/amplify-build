@@ -1,15 +1,13 @@
 version: 0.2
 phases:
   install:
-    # runtime-versions:
-    #   python: 3.7
+    runtime-versions:
+      python: 3.7
     commands:
-      - apt-get update
-      - apt-get -y install python3-pip
-      - pip3 install --upgrade pip3
-      - pip3 install --upgrade awscli
-      - pip3 install mkdocs
-      - pip3 install mkdocs-material
+      - pip install --upgrade pip
+      - pip install --upgrade awscli
+      - pip install mkdocs
+      - pip install mkdocs-material
   pre_build:
     commands:
       # Discover and run unit tests in the 'tests' directory
