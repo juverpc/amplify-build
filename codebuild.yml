@@ -5,6 +5,7 @@ phases:
     commands:
       - npm install
       - cd ./amplifyapp
+      - chmod +x node_modules/.bin/react-scripts
       - npm run-script build
       - cd build
       - zip -r ../deployment.zip .
