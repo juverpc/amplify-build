@@ -4,7 +4,7 @@ phases:
   build:
     commands:
       - pwd
-      - cd ./amplifyapp/build
+      - cd /codebuild/output/src107605912/src/amplifyapp/build
       - zip -r ../deployment.zip
       - python3 amplify-build.py --app-name "app-name2" --branch-name "main" --dep-loc ./deployment.zip
   
