@@ -36,6 +36,9 @@ def start_deployment(app_id, branch_name, job_id):
     resp = amplify_client.start_deployment(appId=app_id, branchName=branch_name, jobId=job_id)
     return resp['jobSummary']['status']
 
+def create_backend_environment(app_id):
+    resp = amplify_client.create_backend_environment(appId=app_id, environmentName='envtest', deploymentArtifacts='envTest')
+    
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='AWS Amplify App Build Script')
     parser.add_argument('--app-name', help='Amplify App Name', default='amplify-deploy', dest='app_name')
@@ -47,8 +50,12 @@ if __name__ == '__main__':
     if app_id is None:
         app_id = create_app(app_name=args.app_name)
     
+    create_backend_environment(app_id=app_id)
+    
     create_branch(app_id=app_id, branch_name=args.branch_name)
     job_id, upload_url = create_deployment(app_id=app_id, branch_name=args.branch_name)
 
     upload_payload(upload_url=upload_url, deployment_loc=args.dep_loc)
     start_deployment(app_id=app_id, branch_name=args.branch_name, job_id=job_id)
+    
+   
